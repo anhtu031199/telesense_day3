@@ -9,15 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 
 class MainActivity : AppCompatActivity() {
-    var btn: TextView? = null
+    var btn_signup: TextView? = null
+    var btn_signin: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btn = findViewById(R.id.btn_signup)
-        btn?.setOnClickListener({
+        btn_signup = findViewById(R.id.btn_signup)
+        btn_signup?.setOnClickListener({
             if (savedInstanceState == null) {
                 supportFragmentManager.commit {
                     setReorderingAllowed(true)
@@ -25,6 +27,19 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+        btn_signin = findViewById(R.id.btn_signin)
+        btn_signin?.setOnClickListener({
+            if (savedInstanceState == null) {
+                supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<LoginFragment>(R.id.frame_layout)
+                }
+            }
+        })
+
+    }
+
+    override fun onBackPressed() {
 
     }
 }
